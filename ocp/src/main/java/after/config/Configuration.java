@@ -18,6 +18,6 @@ public class Configuration {
 
     @Bean
     public CustomerValidator customerValidator() {
-        return new CustomerValidator();
+        return new SimpleCustomerValidator();
     }
 }

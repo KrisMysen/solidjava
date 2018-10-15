@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="dip" />
+        <module name="dip-thirdparty" />
         <module name="dipthirdparty" />
         <module name="isp" />
         <module name="lsp" />

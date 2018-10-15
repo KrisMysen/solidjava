@@ -3,6 +3,8 @@ package before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CustomerService {
 
@@ -28,5 +30,18 @@ public class CustomerService {
         storage.save(customer);
 
         return customer;
+    }
+
+
+    public List<Customer> getAllCustomers() {
+        return storage.getAll();
+    }
+
+    public Customer findCustomerByName(String name) {
+        return storage.get(name);
+    }
+
+    public void resetStorage() {
+        storage.reset();
     }
 }

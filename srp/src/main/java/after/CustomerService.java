@@ -1,13 +1,8 @@
 package after;
 
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
 
 @Service
 public class CustomerService {
@@ -29,4 +24,19 @@ public class CustomerService {
 
         return customer;
     }
+
+
+    public List<Customer> getAllCustomers() {
+        return storage.getAll();
+    }
+
+    public Customer findCustomerByName(String name) {
+        return storage.get(name);
+    }
+
+    public void resetStorage() {
+        storage.reset();
+    }
+
+
 }

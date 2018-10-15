@@ -2,6 +2,8 @@ package before;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CustomerService {
 
@@ -22,4 +24,18 @@ public class CustomerService {
 
         return customer;
     }
+
+    public List<Customer> getAllCustomers() {
+        return storage.readAllFromFile();
+    }
+
+    public Customer findCustomerByName(String name) {
+        return storage.get(name);
+    }
+
+    public void resetStorage() {
+        storage.reset();
+    }
+
+
 }

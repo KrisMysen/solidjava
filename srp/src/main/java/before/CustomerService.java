@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 @Service
 public class CustomerService {
 
-    public static final String FOLDER = "customers";
+    private static final String FOLDER = "customers";
 
     public Customer createCustomer(String name, String email) {
 
@@ -74,7 +74,7 @@ public class CustomerService {
     }
 
     public Customer findCustomerByName(String name) {
-        return readFromFile(new File(FOLDER + File.separator + name));
+        return readFromFile(new File(FOLDER + File.separator + name + ".data"));
     }
 
     public void resetStorage() {

@@ -55,8 +55,11 @@ public class Application {
         try {
             customerService.createCustomer(name, email);
         }
+        catch (IllegalArgumentException iae) {
+            System.err.println("Validation error on new customer data");
+        }
         catch (Exception e) {
-            System.err.println("Invalid input for new customer");
+            System.err.println("Unexpected error when creating new customer!");
         }
     }
 

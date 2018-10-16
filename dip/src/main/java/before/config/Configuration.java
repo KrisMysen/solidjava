@@ -7,12 +7,22 @@ import org.springframework.context.annotation.Bean;
 public class Configuration {
 
     @Bean
-    public CustomerService customerService(CustomerValidator validator, CustomerWriter customerWriter) {
-        return new CustomerService(validator, customerWriter);
+    public CustomerService customerService(CustomerValidator validator, CustomerWriter customerWriter, CustomerReader customerReader) {
+        return new CustomerService(validator, customerWriter, customerReader);
     }
 
     @Bean
-    public CustomerWriter customerWriter() {
+    public CustomerWriter customerWriter(CloudCustomerStorage storage) {
+        return storage;
+    }
+
+    @Bean
+    public CustomerReader customerReader(CloudCustomerStorage storage) {
+        return storage;
+    }
+
+    @Bean
+    public CloudCustomerStorage cloudCustomerStorage() {
         return new CloudCustomerStorage();
     }
 
@@ -20,4 +30,5 @@ public class Configuration {
     public CustomerValidator customerValidator() {
         return new SimpleCustomerValidator();
     }
+
 }

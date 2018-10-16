@@ -3,16 +3,20 @@ package before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CustomerService {
 
     private final CustomerValidator validator;
-    private final CustomerWriter storage;
+    private final CustomerWriter writer;
+    private final CustomerReader reader;
 
     @Autowired
-    public CustomerService(CustomerValidator validator, CustomerWriter storage) {
+    public CustomerService(CustomerValidator validator, CustomerWriter writer, CustomerReader reader) {
         this.validator = validator;
-        this.storage = storage;
+        this.writer = writer;
+        this.reader = reader;
     }
 
     public final Customer createCustomer(String name, String email) {
@@ -25,8 +29,21 @@ public class CustomerService {
                 .email(email)
                 .build();
 
-        storage.write(customer);
+        writer.write(customer);
 
         return customer;
+    }
+
+
+    public List<Customer> getAllCustomers() {
+        return reader.readAll();
+    }
+
+    public Customer findCustomerByName(String name) {
+        return reader.read(name);
+    }
+
+    public void resetStorage() {
+        writer.reset();
     }
 }
